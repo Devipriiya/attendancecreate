@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Filtering</title>
+    <style>
+        /* Your existing CSS styles go here */
+
+        /* Additional styles for the filter */
+        .filter-container {
+            margin-bottom: 20px;
+        }
+
+        .filter-label {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Your existing HTML code goes here -->
+
+    <div class="filter-container">
+        <label for="hotelFilter" class="filter-label">Filter by Hotel:</label>
+        <select id="hotelFilter" onchange="filterHotels()">
+            <option value="all">All Hotels</option>
+            <option value="hotel1">Hotel 1</option>
+            <option value="hotel2">Hotel 2</option>
+            <!-- Add more options for each hotel -->
+        </select>
+    </div>
+
+    <!-- Display your hotels here -->
+    <div class="plans-section" id="rooms">
+        <div class="container" id="hotelList">
+            <!-- Your existing hotel display code goes here -->
+        </div>
+    </div>
+
+    <script>
+        // Sample hotel data
+        const hotels = [
+            { name: 'Hotel 1', type: 'hotel1', /* other properties */ },
+            { name: 'Hotel 2', type: 'hotel2', /* other properties */ },
+            // Add more hotel data as needed
+        ];
+
+        // Display all hotels initially
+        displayHotels(hotels);
+
+        // Function to filter hotels based on user selection
+        function filterHotels() {
+            const selectedHotelType = document.getElementById('hotelFilter').value;
+
+            if (selectedHotelType === 'all') {
+                // Display all hotels if "All Hotels" is selected
+                displayHotels(hotels);
+            } else {
+                // Filter and display hotels based on the selected type
+                const filteredHotels = hotels.filter(hotel => hotel.type === selectedHotelType);
+                displayHotels(filteredHotels);
+            }
+        }
+
+        // Function to display hotels
+        function displayHotels(hotelArray) {
+            const hotelListContainer = document.getElementById('hotelList');
+            hotelListContainer.innerHTML = ''; // Clear previous content
+
+            hotelArray.forEach(hotel => {
+                // Generate HTML for each hotel, similar to your existing code
+                const hotelCard = document.createElement('div');
+                // Customize the hotel card content based on your needs
+                hotelCard.innerHTML = `
+                    <div class="priceing-table-main">
+                        <!-- Your hotel card content goes here -->
+                        <h4>${hotel.name}</h4>
+                        <!-- Add other hotel details as needed -->
+                    </div>
+                `;
+                hotelListContainer.appendChild(hotelCard);
+            });
+        }
+    </script>
+</body>
+</html>
